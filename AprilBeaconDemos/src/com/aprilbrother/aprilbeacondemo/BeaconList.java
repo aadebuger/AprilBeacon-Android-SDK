@@ -228,10 +228,12 @@ public class BeaconList extends Activity {
 			p.setFlashMode(Parameters.FLASH_MODE_TORCH);
 			mCamera.setParameters(p);
 			mCamera.startPreview();
+			/*
 			mCamera.autoFocus(new AutoFocusCallback() {  
                 public void onAutoFocus(boolean success, Camera camera) {  
                 }  
-            }); 
+            });
+            */ 
 			Log.d("LEDFlashlight", "Turned flash on");
 			return true;
 		}
