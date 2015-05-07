@@ -57,6 +57,7 @@ public class BeaconList extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		init();
+		mIsFlashOn=false;
 	}
 
 	private void init() {
@@ -83,11 +84,12 @@ public class BeaconList extends Activity {
 					Log.i(TAG, "rssi = " + beacons.get(0).getRssi());
 					System.out.println("beacons.get(0) "+beacons.get(0).getProximity());
 
-					if (beacons.get(0).getProximity()==2)
+					if (beacons.get(0).getProximity()==2||beacons.get(0).getProximity()==1)
 					{
 						if (mIsFlashOn) {
 				//	mIsFlashOn = turnFlashOff();
 				//	v.setKeepScreenOn(false);
+					System.out.println("have flashon");		
 				} else {
 					System.out.println("flashon");
 					mIsFlashOn = turnFlashOn();
