@@ -72,7 +72,10 @@ public class BeaconList extends Activity {
 				myBeacons.clear();
 				myBeacons.addAll(beacons);
 				if (beacons != null && beacons.size() > 0)
-					Log.i(TAG, "rssi = " + beacons.get(0).getRssi());
+				{
+					Log.i(TAG, "rssi = " + .getRssi());
+					System.out.println("beacons.get(0) ",beacons.get(0).getProximity());
+						}
 				runOnUiThread(new Runnable() {
 					@Override
 					public void run() {
