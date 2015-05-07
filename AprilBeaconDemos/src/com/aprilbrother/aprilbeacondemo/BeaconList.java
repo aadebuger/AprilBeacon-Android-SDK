@@ -231,4 +231,19 @@ public class BeaconList extends Activity {
 		Log.d("LEDFlashlight", "FLASH_MODE_TORCH not supported");
 		return false;
 	}
+	@Override
+	protected void onPause() {
+		// Log.d("LEDFlashlight", "Pausing");
+		super.onPause();
+		mCamera.release();
+		// Log.d("LEDFlashlight", "Leaving onPause");
+	}
+	
+	@Override
+	protected void onResume() {
+		// Log.d("LEDFlashlight", "Entering onResume");
+		super.onResume();
+		mCamera = Camera.open();
+		// Log.d("LEDFlashlight", "Leaving onResume");
+	}
 }
