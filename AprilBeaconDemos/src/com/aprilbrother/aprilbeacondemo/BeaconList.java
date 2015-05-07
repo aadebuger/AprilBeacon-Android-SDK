@@ -24,6 +24,7 @@ import com.aprilbrother.aprilbrothersdk.Region;
 
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
+import android.hardware.Camera.AutoFocusCallback;  
 
 /**
  * 搜索展示beacon列表
