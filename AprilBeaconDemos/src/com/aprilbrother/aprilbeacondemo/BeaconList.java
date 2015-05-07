@@ -22,11 +22,17 @@ import com.aprilbrother.aprilbrothersdk.BeaconManager.MonitoringListener;
 import com.aprilbrother.aprilbrothersdk.BeaconManager.RangingListener;
 import com.aprilbrother.aprilbrothersdk.Region;
 
+import android.hardware.Camera;
+import android.hardware.Camera.Parameters;
+
 /**
  * 搜索展示beacon列表
  * scan beacon show beacon list
  */
 public class BeaconList extends Activity {
+	private Camera mCamera = null;
+	private boolean mIsFlashOn;
+
 	private static final int REQUEST_ENABLE_BT = 1234;
 	private static final String TAG = "BeaconList";
 //	private static final Region ALL_BEACONS_REGION = new Region("", "e2c56db5-dffb-48d2-b060-d0f5a71096e3",
@@ -185,5 +191,31 @@ public class BeaconList extends Activity {
 			Log.d(TAG, "Error while stopping ranging", e);
 		}
 		super.onStop();
+	}
+
+    private boolean turnFlashOff() {
+    	// Log.d("LEDFlashlight", "Turning flash off");
+    	mCamera.stopPreview();
+    	Parameters p = mCamera.getParameters();
+    	p.setFlashMode(mFlashMode);
+    	mCamera.setParameters(p);
+    	Log.d("LEDFlashlight", "Turned flash off");
+		return false;
+	}
+
+	private boolean turnFlashOn() {
+		// Log.d("LEDFlashlight", "Turning flash on");
+		Parameters p = mCamera.getParameters();
+		List<String> flashModes	= p.getSupportedFlashModes();
+		if (flashModes.contains(Parameters.FLASH_MODE_TORCH)) {
+			mFlashMode = p.getFlashMode();
+			p.setFlashMode(Parameters.FLASH_MODE_TORCH);
+			mCamera.setParameters(p);
+			mCamera.startPreview();
+			Log.d("LEDFlashlight", "Turned flash on");
+			return true;
+		}
+		Log.d("LEDFlashlight", "FLASH_MODE_TORCH not supported");
+		return false;
 	}
 }
