@@ -82,7 +82,19 @@ public class BeaconList extends Activity {
 				{
 					Log.i(TAG, "rssi = " + beacons.get(0).getRssi());
 					System.out.println("beacons.get(0) "+beacons.get(0).getProximity());
+
+					if (beacons.get(0).getProximity()==2)
+					{
+						if (mIsFlashOn) {
+				//	mIsFlashOn = turnFlashOff();
+				//	v.setKeepScreenOn(false);
+				} else {
+					System.out.println("flashon");
+					mIsFlashOn = turnFlashOn();
+				//	v.setKeepScreenOn(true);
+				}
 						}
+					}
 				runOnUiThread(new Runnable() {
 					@Override
 					public void run() {
