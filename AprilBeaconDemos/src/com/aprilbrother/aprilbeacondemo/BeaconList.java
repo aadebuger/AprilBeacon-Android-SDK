@@ -32,6 +32,7 @@ import android.hardware.Camera.Parameters;
 public class BeaconList extends Activity {
 	private Camera mCamera = null;
 	private boolean mIsFlashOn;
+		private String mFlashMode;
 
 	private static final int REQUEST_ENABLE_BT = 1234;
 	private static final String TAG = "BeaconList";
